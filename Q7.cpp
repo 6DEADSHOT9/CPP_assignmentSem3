@@ -16,13 +16,17 @@ class Student
     public:
         void getdata()
         {
-            cout<<"Enter the roll no. and name of the student: ";
-            cin>>roll_no>>name;
+            cout<<"Enter the name of the student: ";
+            cin>>name;
+            cout<<"Enter the roll no. of the student: ";
+            cin>>roll_no;
         }
-        void putdata()
+        void useData()
         {
-            cout<<"Roll no. = "<<roll_no<<endl;
-            cout<<"Name = "<<name<<endl;
+            cout<<"-------------------------------"<<endl;
+            cout<<"|      Name         :  "<<name<<endl;
+            cout<<"|      Roll no.     :  "<<roll_no<<endl;
+            cout<<"-------------------------------"<<endl;
         }
 };
 class Exam: public Student
@@ -33,17 +37,20 @@ class Exam: public Student
         void getdata()
         {
             Student::getdata();
-            cout<<"Enter the marks of 6 subjects: ";
-            for(int i=0;i<6;i++)
+            cout<<"Enter the marks of 6 subjects: "<<endl;
+            for(int i=0;i<6;i++){
+                cout<<"Subject "<<i+1<<"   :  ";
                 cin>>marks[i];
         }
-        void putdata()
+        }
+        void useData()
         {
-            Student::putdata();
-            cout<<"Marks in 6 subjects: ";
-            for(int i=0;i<6;i++)
-                cout<<marks[i]<<" ";
-            cout<<endl;
+            Student::useData();
+            cout<<"------Marks in 6 subjects------"<<endl;
+            for(int i=0;i<6;i++){
+                cout<<"|      Subject "<<i+1<<"    :  "<<marks[i]<<endl;
+        }
+            cout<<"-------------------------------"<<endl;
         }
 };
 class Result: public Exam
@@ -58,17 +65,21 @@ class Result: public Exam
             for(int i=0;i<6;i++)
                 total+=marks[i];
         }
-        void putdata()
+        void useData()
         {
-            Exam::putdata();
-            cout<<"Total marks = "<<total<<endl;
+            Exam::useData();
+            cout<<"-------------------------------"<<endl;
+            cout<<"|      Total marks  :  "<<total<<endl;
+            cout<<"|      Name         :  "<<name<<endl;
+            cout<<"-------------------------------"<<endl;
+
         }
 };
 int main()
 {
     Result r;
     r.getdata();
-    r.putdata();
+    r.useData();
     return 0;
 }
 
