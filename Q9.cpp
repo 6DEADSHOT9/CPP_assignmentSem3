@@ -13,26 +13,35 @@ Compare S1 and S2
 
 class String{
     
-    char strr[64];
-    String(){
-        cout<<"Enter strring :";
-        cin>>strr;
-    }
+    string strr;
+    public:
+        void get(){
+            cout<<"Enter string :";
+            cin>>strr;
+        }
+        void display(){
+            cout<<strr;
+        }
 
-    String operator= (String &strring){
+    // String operator= (String &strring){
 
-        String x;
-        strcpy(x.strr, strring.strr);
-        return x;
+    //     String x;
+    //     strcpy(x.strr, strring.strr);
+    //     return x;
 
-    }
+    // }
 };
 
+int main(){
+    String s1;
+    String s3;
+    s3.get();
+    s1.get();
 
+    s1 = s3;
+    s1.display();
 
-
-
-
+}
 
 
 
