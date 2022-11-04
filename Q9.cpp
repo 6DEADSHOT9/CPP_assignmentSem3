@@ -1,46 +1,63 @@
 #include <iostream>
-#include <string.h>
+#include <string>
 using namespace std;
-
-/*Create two objects of class string s1 and s2 as shown below:
-String S1= "Amity"
-String S2= "University"
-Implement the following operations and write the output of each operation:
-Copy the content of S1 to S3
-Find the substring Univ in S2
-Compare S1 and S2
-*/
 
 class String{
     
+    private:
     string strr;
     public:
+    friend void copy(String &s1, String &s3);
+
         void get(){
-            cout<<"Enter string :";
+            cout<<"|      Enter string :";
             cin>>strr;
         }
         void display(){
-            cout<<strr;
+            cout<<strr<<endl;
         }
-
-    // String operator= (String &strring){
-
-    //     String x;
-    //     strcpy(x.strr, strring.strr);
-    //     return x;
-
-    // }
+        void foindd(string str){
+            int pos = strr.find(str);
+            if(pos == -1){
+                cout<<"|      Substring "<<str<<" not found"<<endl;
+            }
+            else{
+                cout<<"|      Substring "<<str<<" found at position :"<<pos<<endl;
+            }
+        }
+        
+        void compare(String &s1, String &s2){
+            if(s1.strr == s2.strr){
+                cout<<"|      Strings are equal"<<endl;
+            }
+            else{
+                cout<<"|      Strings are not equal"<<endl;
+            }
+        }
 };
 
+void copy(String &A, String &B){
+    
+    B.strr = A.strr;
+    
+}
+
 int main(){
+
     String s1;
+    String s2;
     String s3;
-    s3.get();
+    cout<<"----------------------------"<<endl;
     s1.get();
-
-    s1 = s3;
-    s1.display();
-
+    s2.get();
+    copy(s1,s3);
+    cout<<"|      After copying s1 to s3 :";
+    s3.display();
+    s2.foindd("Univ");
+    s1.compare(s1, s2);
+    cout<<"----------------------------"<<endl;
+    return 0;
+    
 }
 
 
