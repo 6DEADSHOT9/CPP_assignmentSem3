@@ -1,64 +1,64 @@
 #include <iostream>
 using namespace std;
 
-/*Consider an example of book shop which sells books and video tapes.
-These two classes are inherited from base class called media.
-The media class has command data members such as title and publication.
-The book class has data members for storing number of pages in a book and tape class has playing time in a tape.
-Each class will have member functions such as read () and show (). In the base class, these members have to be defined as virtual functions. 
-Write a program to models the class hierarchy for book */
+class media {
+  string title, publication;
 
-class media{
-
-    char title [64];
-    char publication [64];
-    
-    virtual void read(){
-        cout<<"Enter name :";
-        cin>>title;
-        cout<<endl;
-        cout<<"Enter Publication :";
-        cin>>publication;
-
-    };
-    virtual void show(){
-        cout<<title<<endl;
-        cout<<publication<<endl;
-    };
-
+ public:
+  virtual void read() {
+    cout << "|      Enter Title: ";
+    getline(cin, title);
+    cout << "|      Enter Publication: ";
+    getline(cin, publication);
+  }
+  virtual void show() {
+    cout << "|      Title: " << title << endl;
+    cout << "|      Publication: " << publication << endl;
+  }
 };
+class book : public media {
+  int pages;
 
-class book: public media{
-
-    int pages;
-    void read(){
-        cout<<"Enter no. of pages :";
-        cin>>pages;
-    };
-    void show(){
-        cout<<pages;
-    };
-
+ public:
+  void read() {
+    cout << "|      Enter Pages: ";
+    cin >> pages;
+  }
+  void show() { cout << "|      Number of pages: " << pages << endl; }
 };
+class tape : public media {
+  int time;
 
-class vid_tape: public media{
-
-    int play_time;
-    void read(){
-        cout<<"Enter play time";
-        cin>>play_time;
-    };
-    void show(){
-        cout<<play_time;
-    };
+ public:
+  void read() {
+    cout << "|      Enter Playing-Time: ";
+    cin >> time;
+  }
+  void show() { cout << "|      Playing-time: " << time << endl; }
 };
-
-
-
-
-
-
-
-
-
-
+int main() {
+  media *m;
+  media base;
+  m = &base;
+  book b1;
+  tape t1;
+  int choice;
+  cout << "|      Enter 1 for book and 2 for tapes: ";
+  cin >> choice;
+  switch (choice) {
+    case 1:
+      m = &b1;
+      m->read();
+      m->show();
+      break;
+    case 2:
+      m = &t1;
+      m->read();
+      m->show();
+      break;
+    default:
+      cout << "|      Invalid choice" << endl;
+      break;
+  }
+  return 0;
+}
